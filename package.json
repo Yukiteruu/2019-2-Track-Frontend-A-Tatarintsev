@@ -1,9 +1,9 @@
 {
-  "name": "track-mail-2019-a-opalev",
+  "name": "Amidamaru",
   "homepage": "track-mail-ru.github.io/track-mail/",
   "description": "Mail.Ru Group Frontend Track course, 2019",
   "version": "0.1.0",
-  "author": "A Opalev",
+  "author": "A Tatarintsev",
   "dependencies": {
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
