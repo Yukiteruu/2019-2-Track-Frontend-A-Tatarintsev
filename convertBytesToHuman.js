@@ -13,7 +13,7 @@
  */
 
 //export default 
-function convertBytesToHuman(bytes) {
+export default  function convertBytesToHuman(bytes) {
 	let k = 0;
 	if((typeof(bytes) != "number") || bytes < 0 )
 		{return false;}
@@ -51,7 +51,7 @@ function convertBytesToHuman(bytes) {
 	 }
 
 }
-console.log(convertBytesToHuman({some: 'non empty object'}));
+
 
 
 

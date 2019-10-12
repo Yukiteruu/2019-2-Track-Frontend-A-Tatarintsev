@@ -5,7 +5,7 @@
  * convertBytesToHuman(-1) !== '1 B',
  * convertBytesToHuman('string') === false
  * convertBytesToHuman(5) === '5 B'
- */{some: 'non empty object'}
+ */['a', 'r', 'r', 'a', 'y']
 
 import convertBytesToHuman from './convertBytesToHuman';
 
@@ -15,7 +15,12 @@ test('Возвращает false для неправильного типа да
   expect(convertBytesToHuman(undefined).toBe(false)
   expect(convertBytesToHuman({}).toBe(false)
   expect(convertBytesToHuman([]).toBe(false)
-  expect(convertBytesToHuman({some: 'non empty object'}).toBe(false)
+  expect(convertBytesToHuman(['a', 'r', 'r', 'a', 'y']).toBe(false)
+  expect(convertBytesToHuman(Symbol('symbol')).toBe(false)
+  expect(convertBytesToHuman(function(a) {return a}).toBe(false)
+  expect(convertBytesToHuman(Infinity).toBe(false)
+  expect(convertBytesToHuman(-Infinity).toBe(false)
+  expect(convertBytesToHuman({some: 'non empty object'}).toBe(false)  
 });
 
 test('Возвращает корректное значение для чисел', () => {
