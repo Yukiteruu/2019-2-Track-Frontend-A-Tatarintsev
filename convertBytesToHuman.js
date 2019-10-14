@@ -13,7 +13,10 @@
  */
 
 //export default 
-export default  function convertBytesToHuman(bytes) {
+export default function convertBytesToHuman(bytes) {
+	if(typeof(bytes) === typeof([]) || typeof(bytes) === typeof({})){
+		return false;
+	}
 	let k = 0;
 	if((typeof(bytes) != "number") || bytes < 0 )
 		{return false;}
@@ -46,12 +49,10 @@ export default  function convertBytesToHuman(bytes) {
 	 			return bytes + " GB";
 	 		case 4:
 	 			return bytes + " TB";
-	 		//default:
-	 			//return console.log(bytes);				
+	 						
 	 }
 
 }
-
 
 
 
