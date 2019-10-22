@@ -2,18 +2,17 @@ const template = document.createElement('template');
 template.innerHTML = `
     <style>
         input {
-            border: 0;
+            border: 20px;
             outline: none;
-            width: 100%;
+            width: calc(100% - 2px);
         }
 
         :host {
             display: inline-block;
             border: 1px solid rgba(25, 25, 25, 0.32);
         }
-
     </style>
-    <input type="text">
+    <input type="text" placeholder="message"/>
 `;
 
 class FormInput extends HTMLElement {
@@ -22,7 +21,7 @@ class FormInput extends HTMLElement {
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-        this.$input = this._shadowRoot.querySelector('input');
+        this.$input = this.shadowRoot.querySelector('input');
     }
 
     static get observedAttributes() {
@@ -36,8 +35,8 @@ class FormInput extends HTMLElement {
     get value() {
         return this.$input.value;
     }
-    clear(){
-        this.$input.value="";
+    connectedCallBack(){
+    	alert(3);
     }
 }
 
