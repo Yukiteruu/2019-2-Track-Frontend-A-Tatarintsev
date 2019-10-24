@@ -1,0 +1,41 @@
+
+html, body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Karla', sans-serif;
+  color: white;
+}
+.container {
+  max-width: 500px;
+  background-color: white;
+  margin: 20px auto;
+
+}
+
+
+.head{
+	height: 50px;
+	width: 500px;
+	background-color: #8E24AA;
+	
+}
+.input{
+	display: flex;
+}
+
+
+
+
+input{
+	width: 100%;
+	border: none;
+	flex: 1;
+    padding: 0px 20px;
+    font-weight: 600;
+}
+
+
+.messages {
+  height: 500px;
+  background: #F5F5F5;
+}
