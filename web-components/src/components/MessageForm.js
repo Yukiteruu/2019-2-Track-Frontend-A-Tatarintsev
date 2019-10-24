@@ -70,70 +70,60 @@ template.innerHTML = `
 `;
 
 
-
 class MessageForm extends HTMLElement {
-    constructor () {
-        super();
-        this._shadowRoot = this.attachShadow({ mode: 'open' });
-        this._shadowRoot.appendChild(template.content.cloneNode(true));
-        this.$form = this._shadowRoot.querySelector('form');
-        this.$input = this._shadowRoot.querySelector('form-input');
-        this.$message = this._shadowRoot.querySelector('.result');
+  constructor() {
+    super();
+    this.shadowRoot = this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.$form = this.shadowRoot.querySelector('form');
+    this.$input = this.shadowRoot.querySelector('form-input');
+    this.$message = this.shadowRoot.querySelector('.result');
 
-        this.$form.addEventListener('submit', this._onSubmit.bind(this));
-        this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
-        this.btn = this._shadowRoot.querySelector('.btn');
-        this.btn.addEventListener('click',this._onSubmit.bind(this));
-        this.field = this._shadowRoot.querySelector('.message-field');
+    this.$form.addEventListener('submit', this.onSubmit.bind(this));
+    this.$form.addEventListener('keypress', this.onKeyPress.bind(this));
+    this.btn = this.shadowRoot.querySelector('.btn');
+    this.btn.addEventListener('click', this.onSubmit.bind(this));
+    this.field = this.shadowRoot.querySelector('.message-field');
 
-        if(localStorage.getItem('items')){
-            this.messageArray =JSON.parse(localStorage.getItem('items'));
-            this.data = JSON.parse(localStorage.getItem('items'));
-            this.data.forEach(item => {
-                let div = document.createElement('div');
-                div.classList.add('result');
-                div.innerText = item;
-                this.field.appendChild(div);
-            
-            });
-        }
-        else{
-            this.messageArray = [];
-        }
-
-        
-        this.field.scrollTop = this.field.scrollHeight;
-    }
-    
-    
-    
-
-    _onSubmit (event) {
-        event.preventDefault();
-        this.$messa= this.$input.value;
-        if(this.$input.value!=''){
-            this.$input.clear();
-            let div = document.createElement('div');
-            div.classList.add('result');
-            div.innerText =this.$messa; 
-            this.field.appendChild(div);
-
-            this.messageArray.push(this.$messa);
-            localStorage.setItem('items', JSON.stringify(this.messageArray));
-            this.field.scrollTop = this.field.scrollHeight;
-        }
-
-        
-        
+    if (localStorage.getItem('items')) {
+      this.messageArray = JSON.parse(localStorage.getItem('items'));
+      this.data = JSON.parse(localStorage.getItem('items'));
+      this.data.forEach((item) => {
+        const div = document.createElement('div');
+        div.classList.add('result');
+        div.innerText = item;
+        this.field.appendChild(div);
+      });
+    } else {
+      this.messageArray = [];
     }
 
-    _onKeyPress (event) {
-        if (event.keyCode == 13) {
-            this.$form.dispatchEvent(new Event('submit'));
-        }
-    }
 
-    
+    this.field.scrollTop = this.field.scrollHeight;
+  }
+
+
+  onSubmit(event) {
+    event.preventDefault();
+    this.$messa = this.$input.value;
+    if (this.$input.value !== '') {
+      this.$input.clear();
+      const div = document.createElement('div');
+      div.classList.add('result');
+      div.innerText = this.$messa;
+      this.field.appendChild(div);
+
+      this.messageArray.push(this.$messa);
+      localStorage.setItem('items', JSON.stringify(this.messageArray));
+      this.field.scrollTop = this.field.scrollHeight;
+    }
+  }
+
+  onKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.$form.dispatchEvent(new Event('submit'));
+    }
+  }
 }
 
 customElements.define('message-form', MessageForm);
